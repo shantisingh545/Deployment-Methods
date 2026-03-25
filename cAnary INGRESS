@@ -1,0 +1,22 @@
+echo "
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app-ingress-canary
+  annotations:
+    nginx.ingress.kubernetes.io/canary: \"true\"
+    nginx.ingress.kubernetes.io/canary-weight: \"30\"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: canary-demo.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: canary
+            port:
+              number: 80
+" | kubectl apply -f -
