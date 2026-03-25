@@ -1,0 +1,3 @@
+sudo nano /etc/hosts
+<MINIKUBE-IP> canary-demo.com
+http://canary-demo.com
